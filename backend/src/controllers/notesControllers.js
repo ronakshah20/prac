@@ -2,7 +2,7 @@ import Note from "../models/Note.js";
 
 async function getAllNotes(_, res) {
     try {
-        const notes = await Note.find().sort({ createdAt: 1 });
+        const notes = await Note.find().sort({ createdAt: 1 });     //use -1 for descending order of notes
         res.status(200).json(notes);
     } catch (error) {
         console.error("Error in getAllNotes controller", error);
@@ -40,8 +40,8 @@ async function updateNote(req, res) {
         const { title, content } = req.body;
         const updatedNote = await Note.findByIdAndUpdate(
             req.params.id,
-            { title, content },
-            { new: true }
+            { $set: { title, content } },
+            { returnDocument: 'after' }
         );
         if (!updatedNote) {
             return res.status(404).json({ message: "Note not found" });
