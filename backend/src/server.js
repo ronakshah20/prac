@@ -1,4 +1,4 @@
-import express, { json } from "express";
+import express from "express";
 import cors from "cors";
 import notesRoutes from "./routes/notesRoutes.js";
 import connectDB from "./config/db.js";
@@ -22,7 +22,7 @@ if(process.env.NODE_ENV !== "production"){
         origin:"http://localhost:5173",
     }));
 }
-app.use(json());
+app.use(express.json());
 app.use(rateLimiter);
 
 app.use("/api/notes", notesRoutes);
