@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import { useState, useEffect} from 'react';
 import Navbar from '../components/Navbar.jsx';
 import RateLimited from '../components/RateLimited.jsx';
 import NoteCard from '../components/NoteCard.jsx';
